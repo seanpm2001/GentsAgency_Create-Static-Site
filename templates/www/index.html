@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width; initial-scale=1">
 	<title></title>
-	<link rel="stylesheet" href="/assets/css/main.css">
+	<link rel="stylesheet" href="/assets/css/main.min.css">
 	<script>
 		(function(w, d) {
 			function loadScript(src, async, defer) {
@@ -20,7 +20,7 @@
 			// we assume decent ES6 support & load in the Rollup bundle.
 			// Else, we load a fallback & run the transpiled bundle from Babel
 			if ('customElements' in window) {
-				loadScript('/assets/js/main.es6.js', false, true);
+				loadScript('/assets/js/main.es6.min.js', false, true);
 			} else {
 				if (!('MutationObserver' in window)) {
 					// Don't even try to polyfill
@@ -28,7 +28,7 @@
 				}
 
 				loadScript('https://cdn.polyfill.io/v2/polyfill.min.js?features=default-3.6,Symbol,fetch,Array.prototype.includes,Array.prototype.find&flags=gated&unknown=polyfill', false, true);
-				loadScript('/assets/js/main.js', false, true);
+				loadScript('/assets/js/main.min.js', false, true);
 			}
 		})(window, document);
 	</script>
