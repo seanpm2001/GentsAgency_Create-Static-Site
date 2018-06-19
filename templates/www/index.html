@@ -27,6 +27,7 @@
 					return;
 				}
 
+				loadScript('https://cdn.polyfill.io/v2/polyfill.min.js?features=default-3.6,Symbol,fetch,Array.prototype.includes,Array.prototype.find&flags=gated&unknown=polyfill', false, true);
 				loadScript('/assets/js/main.js', false, true);
 			}
 		})(window, document);
