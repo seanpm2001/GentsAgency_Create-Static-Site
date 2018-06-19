@@ -1,0 +1,43 @@
+{
+  "name": "@gentsagency/create-static-site",
+  "version": "0.0.1",
+  "description": "Bootstrap a static site",
+  "main": "index.js",
+  "bin": "index.js",
+  "eslintConfig": {
+    "extends": "@gentsagency/eslint-config",
+    "env": {
+      "browser": false,
+      "node": true,
+      "es6": true
+    },
+    "rules": {
+      "no-console": 0
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix index.js; exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gentsagency/create-static-site.git"
+  },
+  "keywords": [
+    "create-static-site"
+  ],
+  "author": "Pieter Beulque <pieterbeulque@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gentsagency/create-static-site/issues"
+  },
+  "homepage": "https://github.com/gentsagency/create-static-site#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "@gentsagency/eslint-config": "^1.0.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-import": "^2.12.0"
+  }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width; initial-scale=1">
+	<title></title>
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<script>
+		(function(w, d) {
+			function loadScript(src, async, defer) {
+				var s = d.createElement('script');
+				s.async = !!async;
+				s.defer = !!defer;
+				s.src = src;
+
+				d.head.appendChild(s);
+			};
+
+			// Mustard Cutting. If there is native Custom Elements (v1)
+			// we assume decent ES6 support & load in the Rollup bundle.
+			// Else, we load a fallback & run the transpiled bundle from Babel
+			if ('customElements' in window) {
+				loadScript('/assets/js/main.es6.js', false, true);
+			} else {
+				if (!('MutationObserver' in window)) {
+					// Don't even try to polyfill
+					return;
+				}
+
+				loadScript('/assets/js/main.js', false, true);
+			}
+		})(window, document);
+	</script>
+</head>
+<body>
+	<h1>
+		Hello, world
+	</h1>
+</body>
+</html>
