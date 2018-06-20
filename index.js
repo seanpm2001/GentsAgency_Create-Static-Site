@@ -3,10 +3,13 @@
 const fs = require('fs');
 const cp = require('child_process');
 const mkdirp = require('mkdirp');
+const minimist = require('minimist');
 
 const cwd = (() => {
-	if (process.argv.length > 2) {
-		const dir = process.argv[process.argv.length - 1];
+	const argv = minimist(process.argv.slice(2));
+
+	if (argv._ && argv._.length > 0) {
+		const dir = argv._.pop();
 		return `${process.cwd()}/${dir}`;
 	}
 
@@ -53,7 +56,7 @@ const copyDirectory = (src, dest) => run(`cp -r ${__dirname}/templates/${src} ${
 	console.log(`👋 Creating a new static website in ${cwd}`);
 	console.log('');
 	await createDirectory(cwd);
-	await run('npm init --yes --scope@gentsagency');
+	await run('npm init --yes --scope=@gentsagency');
 
 	console.log('📥 Installing dependencies & moving files around');
 	console.log('☕️ This might take a while');
