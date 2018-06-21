@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const cp = require('child_process');
-const mkdirp = require('mkdirp');
 const minimist = require('minimist');
 
 const cwd = (() => {
@@ -26,36 +25,10 @@ const run = (cmd) => new Promise((resolve, reject) => {
 	});
 });
 
-const createDirectory = (dir) => new Promise((resolve, reject) => {
-	mkdirp(dir, (err) => {
-		if (err) {
-			return reject(err);
-		}
-
-		return resolve();
-	});
-});
-
-const copyFile = (src, dest) => new Promise((resolve, reject) => {
-	const read = fs.createReadStream(`${__dirname}/templates/${src}`);
-
-	read.on('error', (err) => reject(err));
-
-	const write = fs.createWriteStream(`${cwd}/${dest || src}`);
-
-	write.on('error', (err) => reject(err));
-
-	write.on('close', () => resolve());
-
-	read.pipe(write);
-});
-
-const copyDirectory = (src, dest) => run(`cp -r ${__dirname}/templates/${src} ${cwd}/${dest || src}`);
-
 (async function createStaticSite() {
 	console.log(`👋 Creating a new static website in ${cwd}`);
 	console.log('');
-	await createDirectory(cwd);
+	await fs.ensureDir(cwd);
 	await run('npm init --yes --scope=@gentsagency');
 
 	console.log('📥 Installing dependencies & moving files around');
@@ -63,14 +36,14 @@ const copyDirectory = (src, dest) => run(`cp -r ${__dirname}/templates/${src} ${
 	console.log('');
 	await Promise.all([
 		run('npm i --save-dev eslint eslint-plugin-import @gentsagency/eslint-config stylelint @gentsagency/stylelint-config gulp@^4.0.0 @gentsagency/gulp-registry'),
-		copyFile('gitignore', '.gitignore'),
-		copyFile('editorconfig', '.editorconfig'),
-		copyFile('browserslistrc', '.browserslistrc'),
-		copyFile('eslintrc.js', '.eslintrc.js'),
-		copyFile('stylelintrc.js', '.stylelintrc.js'),
-		copyFile('gulpfile.js'),
-		copyDirectory('gulp'),
-		copyDirectory('www'),
+		fs.copy(`${__dirname}/templates/gitignore`, `${cwd}/.gitignore`),
+		fs.copy(`${__dirname}/templates/editorconfig`, `${cwd}/.editorconfig`),
+		fs.copy(`${__dirname}/templates/browserslistrc`, `${cwd}/.browserslistrc`),
+		fs.copy(`${__dirname}/templates/eslintrc.js`, `${cwd}/.eslintrc.js`),
+		fs.copy(`${__dirname}/templates/stylelintrc.js`, `${cwd}/.stylelintrc.js`),
+		fs.copy(`${__dirname}/templates/gulpfile.js`, `${cwd}/.stylelintrc.js`),
+		fs.copy(`${__dirname}/templates/gulp`, `${cwd}/gulp`),
+		fs.copy(`${__dirname}/templates/www`, `${cwd}/www`),
 	]);
 
 	console.log('🌱 All set! Let\'s get you started:');
