@@ -41,7 +41,7 @@ const run = (cmd) => new Promise((resolve, reject) => {
 		fs.copy(`${__dirname}/templates/browserslistrc`, `${cwd}/.browserslistrc`),
 		fs.copy(`${__dirname}/templates/eslintrc.js`, `${cwd}/.eslintrc.js`),
 		fs.copy(`${__dirname}/templates/stylelintrc.js`, `${cwd}/.stylelintrc.js`),
-		fs.copy(`${__dirname}/templates/gulpfile.js`, `${cwd}/.stylelintrc.js`),
+		fs.copy(`${__dirname}/templates/gulpfile.js`, `${cwd}/gulpfile.js`),
 		fs.copy(`${__dirname}/templates/gulp`, `${cwd}/gulp`),
 		fs.copy(`${__dirname}/templates/www`, `${cwd}/www`),
 	]);
