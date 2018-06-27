@@ -3,6 +3,7 @@
 const fs = require('fs-extra');
 const cp = require('child_process');
 const minimist = require('minimist');
+const path = require('path');
 
 const cwd = (() => {
 	const argv = minimist(process.argv.slice(2));
@@ -14,6 +15,8 @@ const cwd = (() => {
 
 	return process.cwd();
 })();
+
+const projectName = path.basename(cwd);
 
 const run = (cmd) => new Promise((resolve, reject) => {
 	cp.exec(cmd, { cwd }, (err) => {
@@ -46,6 +49,24 @@ const run = (cmd) => new Promise((resolve, reject) => {
 		fs.copy(`${__dirname}/templates/gulp`, `${cwd}/gulp`),
 		fs.copy(`${__dirname}/templates/www`, `${cwd}/www`),
 	]);
+
+	await fs.outputJson(`${cwd}/www/manifest.json`, {
+		name: projectName,
+		icons: [
+			{
+				src: '/favicons/favicon-192x192.png',
+				type: 'image/png',
+				sizes: '192x192',
+			},
+			{
+				src: '/favicons/favicon-512x512.png',
+				type: 'image/png',
+				sizes: '512x512',
+			},
+		],
+		start_url: '/',
+		display: 'standalone',
+	}, { spaces: 2 });
 
 	console.log('🤖 Registering automation scripts');
 	console.log('');
