@@ -1,0 +1,9 @@
+/**
+ * Because of licensing reasons,
+ * we aim to use Google Fonts or Typekit as much as possible.
+ * Try to avoid self-hosting fonts.
+ */
+:root {
+	--font-sans: system-ui;
+	--font-serif: Georgia, 'Times New Roman', Times, serif;
+}

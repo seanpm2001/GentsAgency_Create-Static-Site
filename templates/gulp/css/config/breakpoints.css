@@ -1,0 +1,18 @@
+:root {
+	--breakpoint-xsmall: 568px;
+	--breakpoint-small: 768px;
+	--breakpoint-medium: 1024px;
+	--breakpoint-wide: 1360px;
+	--breakpoint-large: 1600px;
+}
+
+@custom-media --mq-from-xsmall  (width >= var(--breakpoint-xsmall));
+@custom-media --mq-from-small   (width >= var(--breakpoint-small));
+@custom-media --mq-from-medium  (width >= var(--breakpoint-medium));
+@custom-media --mq-from-wide    (width >= var(--breakpoint-wide));
+@custom-media --mq-from-large   (width >= var(--breakpoint-large));
+@custom-media --mq-up-to-xsmall (width < var(--breakpoint-xsmall));
+@custom-media --mq-up-to-small  (width < var(--breakpoint-small));
+@custom-media --mq-up-to-medium (width < var(--breakpoint-medium));
+@custom-media --mq-up-to-wide   (width < var(--breakpoint-wide));
+@custom-media --mq-up-to-large  (width < var(--breakpoint-large));
