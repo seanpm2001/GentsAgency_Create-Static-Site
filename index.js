@@ -36,6 +36,7 @@ const run = (cmd) => new Promise((resolve, reject) => {
 	console.log('');
 	await Promise.all([
 		run('npm i --save-dev eslint@^4.19.1 eslint-plugin-import@^2.13.0 @gentsagency/eslint-config@^2.0.0 stylelint@^9.3.0 @gentsagency/stylelint-config@^1.1.0 gulp@^4.0.0 @gentsagency/gulp-registry@^1.2.0'),
+		run('npm i normalize.css'),
 		fs.copy(`${__dirname}/templates/gitignore`, `${cwd}/.gitignore`),
 		fs.copy(`${__dirname}/templates/editorconfig`, `${cwd}/.editorconfig`),
 		fs.copy(`${__dirname}/templates/browserslistrc`, `${cwd}/.browserslistrc`),
