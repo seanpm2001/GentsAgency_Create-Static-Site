@@ -46,6 +46,22 @@ const run = (cmd) => new Promise((resolve, reject) => {
 		fs.copy(`${__dirname}/templates/www`, `${cwd}/www`),
 	]);
 
+	console.log('🤖 Registering automation scripts');
+	console.log('');
+	const pkg = await fs.readJson(`${cwd}/package.json`);
+
+	if (!pkg.scripts) {
+		pkg.scripts = {};
+	}
+
+	Object.assign(pkg.scripts, {
+		'lint:css': 'stylelint --fix gulp/css/**/*.css; exit 0;',
+		'lint:javascript': 'eslint --fix gulp/js/**/*.js; exit 0;',
+		lint: 'npm run lint:css & npm run lint:javascript',
+	});
+
+	await fs.outputJson(`${cwd}/package.json`, pkg, { spaces: 2 });
+
 	console.log('🌱 All set! Let\'s get you started:');
 	console.log('');
 	console.log(`    cd ${cwd}`);
