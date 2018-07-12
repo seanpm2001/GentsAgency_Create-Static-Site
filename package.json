@@ -1,6 +1,6 @@
 {
   "name": "@gentsagency/create-static-site",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Bootstrap a static site",
   "main": "index.js",
   "bin": "index.js",
