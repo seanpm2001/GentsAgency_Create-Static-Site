@@ -1,0 +1,90 @@
+fieldset {
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+legend {
+	display: block;
+	padding: 0;
+}
+
+/* Use .form-section to group multiple fields */
+.form-section {
+	margin-bottom: 2rem;
+}
+
+.form-section__title {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+}
+
+/* Use .form-group to couple label and field */
+.form-group {
+	margin-bottom: 1rem;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+.form-group__label {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.form-group__input {
+	appearance: none;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	display: block;
+	line-height: 1.35;
+	padding: 0.45rem 0.5rem 0.5rem;
+	width: 100%;
+}
+
+/* Use .radio-group to group radio buttons */
+.radio-group {
+	display: block;
+}
+
+.radio-group__label {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.radio-group__option {
+	display: inline-block;
+	margin-right: 0.5rem;
+	padding: 0.25rem;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+	[type="radio"] {
+		margin-right: 0.25rem;
+		vertical-align: top;
+	}
+}
+
+/* Use .checkbox-group to group checkboxes */
+.checkbox-group {
+	display: block;
+}
+
+.checkbox-group__label {
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.checkbox-group__option {
+	display: block;
+	padding: 0.25rem;
+
+	[type="checkbox"] {
+		margin-right: 0.25rem;
+		vertical-align: top;
+	}
+}
