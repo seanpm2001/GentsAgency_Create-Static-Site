@@ -1,5 +1,7 @@
 const cacheName = 'static';
 
+const offlinePage = '/offline.html';
+
 self.addEventListener('install', (e) => {
 	e.waitUntil(self.skipWaiting());
 });
@@ -12,12 +14,20 @@ self.addEventListener('activate', (e) => {
 			await self.registration.navigationPreload.enable();
 		}
 	})());
+
+	e.waitUntil((async function precache() {
+		const cache = await caches.open(cacheName);
+		await cache.addAll([
+			offlinePage,
+			'/',
+		]);
+	})());
 });
 
 self.addEventListener('fetch', (e) => {
 	const { request } = e;
 	const {
-		headers, method, url, mode
+		headers, method, mode,
 	} = request;
 
 	if (method !== 'GET' && method !== 'HEAD') {
@@ -66,7 +76,7 @@ self.addEventListener('fetch', (e) => {
 			]).catch(async () => {
 				const cached = await caches.match(request);
 				return cached || response;
-			});
+			}).catch(() => caches.match(offlinePage));
 		}
 
 		const cached = await caches.match(request);
