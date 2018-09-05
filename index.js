@@ -52,6 +52,7 @@ const run = (cmd) => new Promise((resolve, reject) => {
 
 	await fs.outputJson(`${cwd}/www/manifest.json`, {
 		name: projectName,
+		short_name: projectName.substr(0, 12), 
 		icons: [
 			{
 				src: '/favicons/favicon-192x192.png',
