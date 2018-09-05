@@ -63,13 +63,7 @@ self.addEventListener('fetch', (e) => {
 
 		if (mode === 'navigate' || headers.get('Accept').includes('text/html')) {
 			return Promise.race([
-				response.then((res) => {
-					if (!res.ok) {
-						throw new Error(response.statusText);
-					}
-
-					return res;
-				}),
+				response,
 				new Promise((_, reject) => {
 					setTimeout(() => reject(), 5000);
 				}),
