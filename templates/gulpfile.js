@@ -1,6 +1,6 @@
 const gulp = require('gulp');
-const config = require('./gulp/config');
 const Registry = require('@gentsagency/gulp-registry');
+const config = require('./gulp/config');
 
 const tasks = new Registry(config);
 
