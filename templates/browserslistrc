@@ -1,5 +1,1 @@
-> 0.5%
-last 5 versions
-Firefox ESR
-not dead
-not < 0.2%
+extends @gentsagency/browserslist-config-es5

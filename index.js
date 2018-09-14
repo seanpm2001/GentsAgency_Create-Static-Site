@@ -38,7 +38,7 @@ const run = (cmd) => new Promise((resolve, reject) => {
 	console.log('☕️ This might take a while');
 	console.log('');
 	await Promise.all([
-		run('npm i --save-dev eslint@^5 eslint-plugin-import@^2 @gentsagency/eslint-config@^2 stylelint@^9 @gentsagency/stylelint-config@^1 gulp@^4 @gentsagency/gulp-registry@^1'),
+		run('npm i --save-dev eslint@^5 eslint-plugin-import@^2 @gentsagency/eslint-config@^2 stylelint@^9 @gentsagency/stylelint-config@^1 gulp@^4 @gentsagency/gulp-registry@^1 @gentsagency/browserslist-config-es5@^1 @gentsagency/browserslist-config-es6@^1'),
 		fs.copy(`${__dirname}/templates/gitignore`, `${cwd}/.gitignore`),
 		fs.copy(`${__dirname}/templates/editorconfig`, `${cwd}/.editorconfig`),
 		fs.copy(`${__dirname}/templates/browserslistrc`, `${cwd}/.browserslistrc`),
