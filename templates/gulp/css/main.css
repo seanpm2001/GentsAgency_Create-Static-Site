@@ -1,6 +1,3 @@
-/* We use Normalize.css because we support IE10+ */
-@import 'normalize.css';
-
 /* Configuration */
 @import 'config/colors';
 @import 'config/fonts';

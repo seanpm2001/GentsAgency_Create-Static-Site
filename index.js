@@ -39,7 +39,6 @@ const run = (cmd) => new Promise((resolve, reject) => {
 	console.log('');
 	await Promise.all([
 		run('npm i --save-dev eslint@^5 eslint-plugin-import@^2 @gentsagency/eslint-config@^2 stylelint@^9 @gentsagency/stylelint-config@^1 gulp@^4 @gentsagency/gulp-registry@^1'),
-		run('npm i normalize.css'),
 		fs.copy(`${__dirname}/templates/gitignore`, `${cwd}/.gitignore`),
 		fs.copy(`${__dirname}/templates/editorconfig`, `${cwd}/.editorconfig`),
 		fs.copy(`${__dirname}/templates/browserslistrc`, `${cwd}/.browserslistrc`),
@@ -52,7 +51,7 @@ const run = (cmd) => new Promise((resolve, reject) => {
 
 	await fs.outputJson(`${cwd}/www/manifest.json`, {
 		name: projectName,
-		short_name: projectName.substr(0, 12), 
+		short_name: projectName.substr(0, 12),
 		icons: [
 			{
 				src: '/favicons/favicon-192x192.png',
