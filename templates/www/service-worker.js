@@ -2,6 +2,9 @@ const cacheName = 'static';
 
 const offlinePage = '/offline.html';
 
+const referrerDeny = [];
+const urlDeny = [];
+
 self.addEventListener('install', (e) => {
 	e.waitUntil(self.skipWaiting());
 });
@@ -27,11 +30,27 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
 	const { request } = e;
 	const {
-		headers, method, mode,
+		url, headers, method, mode, referrer,
 	} = request;
 
 	if (method !== 'GET' && method !== 'HEAD') {
 		return;
+	}
+
+	if (Array.isArray(referrerDeny) && referrerDeny.length > 0) {
+		const matched = referrerDeny.filter((r) => referrer.startsWith(r));
+
+		if (matched.length > 0) {
+			return;
+		}
+	}
+
+	if (Array.isArray(urlDeny) && urlDeny.length > 0) {
+		const matched = urlDeny.filter((u) => url.startsWith(u));
+
+		if (matched.length > 0) {
+			return;
+		}
 	}
 
 	e.respondWith((async function handleFetch() {
